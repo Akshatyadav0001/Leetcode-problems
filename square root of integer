@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        if (x == 0 || x == 1) {
+            return x;
+        }
+        int s = 1, e = x / 2, ans;
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+
+            long long sqr = static_cast<long long>(mid) * mid; // Use long long to prevent overflow
+
+            if (sqr == x) {
+                return mid;
+            } else if (sqr < x) {
+                s = mid + 1;
+                ans = mid;
+            } else {
+                e = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+};
